@@ -9,9 +9,7 @@ void insertion_sort_list(listint_t **list)
 {
 if (list == NULL || *list == NULL || (*list)->next == NULL)
 return;
-listint_t *current;
-listint_t *key;
-listint_t *sorted;
+listint_t *current, *key, *sorted;
 sorted = *list;
 current = sorted->next;
 while (current != NULL)
