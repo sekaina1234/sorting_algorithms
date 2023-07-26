@@ -29,12 +29,14 @@ void cocktail_sort_list(listint_t **list)
 {
 int swapped = 1;
 listint_t *current;
+listint_t *start = NULL;
+listint_t *end = NULL;
 if (!list || !*list)
 return;
 while (swapped)
 {
 swapped = 0;
-for (current = *list; current->next != NULL; current = current->next)
+for (current = start = *list; current->next != end; current = current->next)
 {
 if (current->n > current->next->n)
 {
@@ -45,15 +47,16 @@ swapped = 1;
 }
 if (!swapped)
 break;
-swapped = 0;
-for (; current->prev != NULL; current = current->prev)
+end = current;
+for (current = end->prev; current != start; current = current->prev)
 {
-if (current->n < current->prev->n)
+if (current->n > current->next->n)
 {
-swap(list, current->prev, current);
+swap(list, current, current->next);
 print_list((const listint_t *)*list);
 swapped = 1;
 }
 }
+start = current->next;
 }
 }
